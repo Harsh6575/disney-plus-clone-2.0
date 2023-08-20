@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import useStore from "../store/store";
 
+import { Navlinks } from "../constant";
+
 const Header = () => {
   const navigate = useNavigate();
 
@@ -10,39 +12,6 @@ const Header = () => {
   const setUser = state.setUser;
   const user = state.user;
   const logout = state.logout;
-
-  const Navlinks = [
-    {
-      linkText: "HOME",
-      to: "/",
-      iconName: "home-icon.svg",
-    },
-    {
-      linkText: "SEARCH",
-      to: "/",
-      iconName: "search-icon.svg",
-    },
-    {
-      linkText: "WATCHLIST",
-      to: "/",
-      iconName: "watchlist-icon.svg",
-    },
-    {
-      linkText: "ORIGINALS",
-      to: "/",
-      iconName: "original-icon.svg",
-    },
-    {
-      linkText: "MOVIES",
-      to: "/",
-      iconName: "movie-icon.svg",
-    },
-    {
-      linkText: "SERIES",
-      to: "/add",
-      iconName: "series-icon.svg",
-    },
-  ];
 
   useEffect(() => {
     if (!user) {

@@ -5,9 +5,7 @@ const Input = ({ id, register, required, label, name, errors }) => {
     <div className="w-full relative gap-[10px]f ocus:underline-rose-500 border-white">
       <input
         {...register(id, required)}
-        className={`peer font-light bg-transparent rounded-md outline-none transition border-2 w-[800px] p-1 focus:underline-rose-500 border-white focus:bg-te 
-        ${errors[id] ? "border-rose-500" : "border-none"}
-        ${errors[id] ? "focus:border-rose-500" : "focus:border-none"}
+        className={`peer font-light bg-transparent rounded-md outline-none transition border-0 border-b-2 w-[800px] p-1 focus:border-blue-400
         `}
         placeholder={label}
         required

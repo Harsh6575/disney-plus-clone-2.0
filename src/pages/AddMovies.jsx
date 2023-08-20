@@ -5,6 +5,8 @@ import Input from "../components/Input";
 import db from "../firebase.config";
 import useStore from "../store/store";
 
+import {fileds} from '../constant'; 
+
 const AddMovies = () => {
   const store = useStore();
 
@@ -27,51 +29,6 @@ const AddMovies = () => {
       },
     },
   });
-
-  const fileds = [
-    {
-      name: "title",
-      type: "text",
-      label: "Enter Title",
-      required: true,
-    },
-    {
-      name: "titleImg",
-      type: "text",
-      label: "Enter Title Image",
-      required: true,
-    },
-    {
-      name: "cardImg",
-      type: "text",
-      label: "Enter Card Image",
-      required: true,
-    },
-    {
-      name: "filter",
-      type: "text",
-      label: "Enter Filter",
-      required: true,
-    },
-    {
-      name: "backgroundImg",
-      type: "text",
-      label: "Enter Background Image",
-      required: true,
-    },
-    {
-      name: "description",
-      type: "text",
-      label: "Enter Description",
-      required: true,
-    },
-    {
-      name: "subTitle",
-      type: "text",
-      label: "Enter Sub Title",
-      required: true,
-    },
-  ];
 
   const onSubmit = (data, event) => {
     event.preventDefault(); // Prevent default form submission
@@ -142,7 +99,10 @@ const AddMovies = () => {
             required={field.required}
           />
         ))}
-        <input type="submit" />
+        <input 
+          className='flex items-center justify-center p-3 border-2 border-gray-300 curpor-pointer hover:bg-gray-800 transition duration-200 rounded-xl' 
+          type="submit" 
+          />
       </form>
     </div>
   );

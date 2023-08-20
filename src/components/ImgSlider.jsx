@@ -6,25 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+import { SliderDetails } from "../constant";
+
 const ImgSlider = () => {
-  const SliderDetails = [
-    {
-      src: "/images/slider-badging.jpg",
-      alt: "Slider Badging",
-    },
-    {
-      src: "/images/slider-badag.jpg",
-      alt: "Slider Badag",
-    },
-    {
-      src: "/images/slider-scale.jpg",
-      alt: "Slider Scale",
-    },
-    {
-      src: "/images/slider-scales.jpg",
-      alt: "Slider Scales",
-    },
-  ];
 
   return (
     <Swiper
