@@ -4,7 +4,7 @@ import useStore from "../store/store";
 
 const Login = () => {
   const navigate = useNavigate();
-  
+
   const state = useStore();
   const setUser = state.setUser;
   const user = state.user;
@@ -16,7 +16,7 @@ const Login = () => {
   }, [user, navigate]);
 
   return (
-    <div className="relative h-[calc(100vh-70px)] flex items-top justify-center">
+    <div className="relative h-[calc(100vh-70px)] flex items-center justify-center">
       <div
         className="absolute top-0 bottom-0 left-0 right-0 z-[-1] opacity-70"
         style={{
@@ -30,7 +30,7 @@ const Login = () => {
         <img src="/images/cta-logo-one.svg" alt="CTA Logo One" />
         <Link
           className="w-full bg-blue-600 font-bold py-4 text-white rounded-md text-center text-lg cursor-pointer transition duration-250 ease-in-out hover:bg-blue-700 mt-8 mb-4"
-          onClick={()=>{
+          onClick={() => {
             setTimeout(() => {
               setUser(true);
               localStorage.setItem("userinfo", true);

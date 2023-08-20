@@ -9,7 +9,6 @@ const Header = () => {
   const navigate = useNavigate();
 
   const state = useStore();
-  const setUser = state.setUser;
   const user = state.user;
   const logout = state.logout;
 
@@ -56,8 +55,8 @@ const Header = () => {
           <Link
             onClick={() => {
               setTimeout(() => {
-                setUser(false);
                 logout();
+                localStorage.clear();
                 navigate("/login");
               }, 1000);
             }}
