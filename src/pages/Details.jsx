@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import movies from "../dataset.json";
-
 const Details = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({
