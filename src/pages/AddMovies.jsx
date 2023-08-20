@@ -6,7 +6,6 @@ import db from "../firebase.config";
 import useStore from "../store/store";
 
 const AddMovies = () => {
-
   const store = useStore();
 
   const {
@@ -34,52 +33,52 @@ const AddMovies = () => {
       name: "title",
       type: "text",
       label: "Enter Title",
-      required: true
+      required: true,
     },
     {
       name: "titleImg",
       type: "text",
       label: "Enter Title Image",
-      required: true
+      required: true,
     },
     {
       name: "cardImg",
       type: "text",
       label: "Enter Card Image",
-      required: true
+      required: true,
     },
     {
       name: "filter",
       type: "text",
       label: "Enter Filter",
-      required: true
+      required: true,
     },
     {
       name: "backgroundImg",
       type: "text",
       label: "Enter Background Image",
-      required: true
+      required: true,
     },
     {
       name: "description",
       type: "text",
       label: "Enter Description",
-      required: true
+      required: true,
     },
     {
       name: "subTitle",
       type: "text",
       label: "Enter Sub Title",
-      required: true
+      required: true,
     },
   ];
-
 
   const onSubmit = (data, event) => {
     event.preventDefault(); // Prevent default form submission
 
     data.endpoint = data.title.toLowerCase().replace(/ /g, "-"); // Generate endpoint from title
-  
+    data.id = data.endpoint;
+
     if (
       data.title === "" ||
       data.titleImg === "" ||
@@ -93,15 +92,35 @@ const AddMovies = () => {
       return;
     }
 
-    db.collection("movies").add(data); // Add data to the firestore
+    const {
+      title,
+      titleImg,
+      backgroundImg,
+      filter,
+      endpoint,
+      cardImg,
+      description,
+      subTitle,
+    } = data;
 
-    db.collection("movies").onSnapshot((snapshot)=>{
-      let tempMovies = snapshot.docs.map((doc)=>{
-        return {id:doc.id,...doc.data()}
+    db.collection("movies").doc(endpoint).set({
+      title,
+      titleImg,
+      backgroundImg,
+      filter,
+      endpoint,
+      cardImg,
+      description,
+      subTitle,
+    });
+
+    db.collection("movies").onSnapshot((snapshot) => {
+      let tempMovies = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
       });
       store.setMovies(tempMovies);
-    })
-    
+    });
+
     reset();
   };
 
