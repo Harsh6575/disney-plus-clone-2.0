@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import db from "../firebase.config";
 
 const Details = () => {
   const { id } = useParams();
@@ -11,13 +12,23 @@ const Details = () => {
     subTitle: null,
   });
 
+  const navigate=useNavigate();
+
   useEffect(() => {
-    movies.forEach((movie) => {
-      if (movie.endpoint === id) {
-        setMovie(movie);
-      }
-    });
-  }, [id, setMovie]);
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          //save the movie data
+          setMovie(doc.data());
+        } else {
+          navigate("/");
+          //redirect to home
+        }
+      });
+  }, [id,setMovie,navigate]);
+
   return (
     <div className="min-h-[calc(100vh-70px)] px-[calc(3.5vw+5px)] relative overflow-y-hidden">
       {movie && (
@@ -53,7 +64,9 @@ const Details = () => {
             </button>
           </div>
           <div className="bg-slate-800 text-white w-max p-4 mt-[26px] ">
-            <div className="text-[15px] min-h-[20px] text-justify">{movie.subTitle}</div>
+            <div className="text-[15px] min-h-[20px] text-justify">
+              {movie.subTitle}
+            </div>
             <div className="leading-6 text-[20px] mt-[16px] max-w-md text-justify">
               {movie.description}
             </div>
